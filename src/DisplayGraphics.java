@@ -1,7 +1,40 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class DisplayGraphics extends JPanel {
+public class DisplayGraphics extends JPanel{
+
+    public DisplayGraphics(){
+        setLayout(null);
+        JButton button1 = new JButton("1");
+        JButton button2 = new JButton("2");
+        JButton button3 = new JButton("3");
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("1");
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("2");
+            }
+        });
+        button3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("3");
+            }
+        });
+        button1.setBounds(1000,50,50,50);
+        button2.setBounds(1055,50,50,50);
+        button3.setBounds(1110,50,50,50);
+        add(button1);
+        add(button2);
+        add(button3);
+    }
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawLine(50,150,950,150);
@@ -23,5 +56,7 @@ public class DisplayGraphics extends JPanel {
         g.drawLine(50,650,950,650);
         g.drawLine(350,50,350,950);
         g.drawLine(650,50,650,950);
+
     }
+
 }
