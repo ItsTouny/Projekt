@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class DisplayGraphics extends JPanel{
 
@@ -10,24 +8,9 @@ public class DisplayGraphics extends JPanel{
         JButton button1 = new JButton("1");
         JButton button2 = new JButton("2");
         JButton button3 = new JButton("3");
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("1");
-            }
-        });
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("2");
-            }
-        });
-        button3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("3");
-            }
-        });
+        button1.addActionListener(e -> System.out.println("1"));
+        button2.addActionListener(e -> System.out.println("2"));
+        button3.addActionListener(e -> System.out.println("3"));
         button1.setBounds(1000,50,50,50);
         button2.setBounds(1055,50,50,50);
         button3.setBounds(1110,50,50,50);
