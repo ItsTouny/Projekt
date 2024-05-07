@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
+import java.util.ArrayList;
 
-public class DisplayGraphics extends JPanel{
-
+public class DisplayGraphics extends JPanel implements MouseListener {
+    private String number;
+    private ArrayList<Coordinates> coordinates = new ArrayList<>();
+    private int help=1;
     public DisplayGraphics(){
         setLayout(null);
 
@@ -19,194 +19,45 @@ public class DisplayGraphics extends JPanel{
         JButton button7 = new JButton("7");
         JButton button8 = new JButton("8");
         JButton button9 = new JButton("9");
-       // button1.addActionListener(e -> addMouseListener(e1 -> System.out.println()));
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("1");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-
-                    }
-                });
-            }
+        button1.addActionListener(e -> {
+            number="1";
+            addMouseListener(this);
         });
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("2");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-                    }
-                });
-            }
+        button2.addActionListener(e -> {
+            number="2";
+            addMouseListener(this);
         });
-        button3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("3");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-
-                    }
-                });
-            }
+        button3.addActionListener(e -> {
+            number="3";
+            addMouseListener(this);
+        });button4.addActionListener(e -> {
+            number="4";
+            addMouseListener(this);
+        });button5.addActionListener(e -> {
+            number="5";
+            addMouseListener(this);
+        });button6.addActionListener(e -> {
+            number="6";
+            addMouseListener(this);
+        });button7.addActionListener(e -> {
+            number="7";
+            addMouseListener(this);
+        });button8.addActionListener(e -> {
+            number="8";
+            addMouseListener(this);
+        });button9.addActionListener(e -> {
+            number="9";
+            addMouseListener(this);
         });
-        button4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("4");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-
-                    }
-                });
-            }
-        });
-        button5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50, 50, 900, 900);
-                        jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
-                        jLabel1.setFont(new Font("font", Font.PLAIN, 50));
-                        jLabel1.setText("5");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX() + " " + e.getY());
-
-                    }
-                });
-            }
-        });
-        button6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("6");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-
-                    }
-                });
-            }
-        });
-        button7.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("7");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-
-                    }
-                });
-            }
-        });
-        button8.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("8");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-
-                    }
-                });
-            }
-        });
-        button9.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mousePressed(MouseEvent e) {
-                        super.mouseClicked(e);
-                        JLabel jLabel1 = new JLabel();
-                        jLabel1.setBounds(50,50,900,900);
-                        jLabel1.setLocation((e.getX()/100)*100+35,((400-(e.getY()/100)*100))*-1);
-                        jLabel1.setFont(new Font("font",Font.PLAIN,50));
-                        jLabel1.setText("9");
-                        add(jLabel1);
-                        jLabel1.repaint();
-                        System.out.println(e.getX()+" "+e.getY());
-                    }
-                });
-            }
-        });
-        button1.setBounds(1000,50,50,50);
-        button2.setBounds(1055,50,50,50);
-        button3.setBounds(1110,50,50,50);
-        button4.setBounds(1165,50,50,50);
-        button5.setBounds(1220,50,50,50);
-        button6.setBounds(1275,50,50,50);
-        button7.setBounds(1330,50,50,50);
-        button8.setBounds(1385,50,50,50);
-        button9.setBounds(1440,50,50,50);
+        button1.setBounds(1050,100,50,50);
+        button2.setBounds(1105,100,50,50);
+        button3.setBounds(1160,100,50,50);
+        button4.setBounds(1215,100,50,50);
+        button5.setBounds(1270,100,50,50);
+        button6.setBounds(1325,100,50,50);
+        button7.setBounds(1380,100,50,50);
+        button8.setBounds(1435,100,50,50);
+        button9.setBounds(1490,100,50,50);
         add(button1);
         add(button2);
         add(button3);
@@ -217,6 +68,61 @@ public class DisplayGraphics extends JPanel{
         add(button8);
         add(button9);
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        if (coordinates.isEmpty()) {
+            JLabel jLabel1 = new JLabel();
+            jLabel1.setBounds(50, 50, 900, 900);
+            jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
+            jLabel1.setFont(new Font("font", Font.PLAIN, 50));
+            jLabel1.setText(number);
+            add(jLabel1);
+            jLabel1.repaint();
+            System.out.println(e.getX() + " " + e.getY());
+            coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
+            help=0;
+            removeMouseListener(this);
+            return;
+        }else {
+            for (int i = 0; i < coordinates.size()+help;i++) {
+                if (((e.getX() / 100) * 100 + 35) == coordinates.get(i).getX() && ((400 - (e.getY() / 100) * 100)) * -1 == coordinates.get(i).getY()) {
+                    return;
+                }
+            }
+        }
+        JLabel jLabel1 = new JLabel();
+        jLabel1.setBounds(50, 50, 900, 900);
+        jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
+        jLabel1.setFont(new Font("font", Font.PLAIN, 50));
+        jLabel1.setText(number);
+        add(jLabel1);
+        jLabel1.repaint();
+        System.out.println(e.getX() + " " + e.getY());
+        coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
+        removeMouseListener(this);
+    }
+
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         g.drawLine(100,200,1000,200);
