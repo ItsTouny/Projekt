@@ -9,7 +9,6 @@ public class DisplayGraphics extends JPanel implements MouseListener {
     private int help=1;
     public DisplayGraphics(){
         setLayout(null);
-
         JButton button1 = new JButton("1");
         JButton button2 = new JButton("2");
         JButton button3 = new JButton("3");
