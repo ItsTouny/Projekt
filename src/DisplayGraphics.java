@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -94,15 +95,17 @@ public class DisplayGraphics extends JPanel implements MouseListener {
                 }
             }
         }
-        JLabel jLabel1 = new JLabel();
-        jLabel1.setBounds(50, 50, 900, 900);
-        jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
-        jLabel1.setFont(new Font("font", Font.PLAIN, 50));
-        jLabel1.setText(number);
-        add(jLabel1);
-        jLabel1.repaint();
-        System.out.println(e.getX() + " " + e.getY());
-        coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
+        if ((e.getX()<1000&&e.getX()>100)&&(e.getY()<1000&&e.getY()>100)){
+            JLabel jLabel1 = new JLabel();
+            jLabel1.setBounds(50, 50, 900, 900);
+            jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
+            jLabel1.setFont(new Font("font", Font.PLAIN, 50));
+            jLabel1.setText(number);
+            add(jLabel1);
+            jLabel1.repaint();
+            System.out.println(e.getX() + " " + e.getY());
+            coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
+        }
         removeMouseListener(this);
     }
 

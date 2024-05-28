@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -8,6 +9,8 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
     JFrame jFrame;
     JPanel jPanel;
     JButton buttonEasy;
+    JButton buttonMedium;
+    JButton buttonHard;
 
     public MenuGraphics(){
         jFrame = new JFrame();
@@ -17,10 +20,23 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLocationRelativeTo(null);
         jPanel.setLayout(null);
+        JLabel jLabel = new JLabel("SUDOKU");
+        jLabel.setFont(new Font("font",Font.PLAIN,200));
+        jLabel.setBounds(0,0,1000,1000);
+        jLabel.setLocation(500,-300);
         buttonEasy = new JButton("Easy");
-        buttonEasy.setBounds(1050,200,100,50);
+        buttonMedium = new JButton("Medium");
+        buttonHard = new JButton("Hard");
+        buttonEasy.setBounds(850,540,150,100);
+        buttonMedium.setBounds(850,650,150,100);
+        buttonHard.setBounds(850,760,150,100);
+        jPanel.add(jLabel);
         jPanel.add(buttonEasy);
+        jPanel.add(buttonMedium);
+        jPanel.add(buttonHard);
         buttonEasy.addActionListener(this);
+        buttonMedium.addActionListener(this);
+        buttonHard.addActionListener(this);
         jFrame.getContentPane().add(jPanel);
         jFrame.setVisible(true);
     }
@@ -51,9 +67,31 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==buttonEasy){
+        if (e.getSource()==buttonEasy) {
             jFrame.dispose();
-            System.out.println("hello");
+            System.out.println("1");
+            JFrame jFrame = new JFrame();
+            jFrame.add(new DisplayGraphics());
+            jFrame.setSize(1920, 1080);
+            jFrame.setResizable(false);
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            jFrame.setLocationRelativeTo(null);
+            jFrame.setVisible(true);
+            removeMouseListener(this);
+        }else if (e.getSource()==buttonMedium){
+            jFrame.dispose();
+            System.out.println("2");
+            JFrame jFrame = new JFrame();
+            jFrame.add(new DisplayGraphics());
+            jFrame.setSize(1920,1080);
+            jFrame.setResizable(false);
+            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            jFrame.setLocationRelativeTo(null);
+            jFrame.setVisible(true);
+            removeMouseListener(this);
+        }else if (e.getSource()==buttonHard){
+            jFrame.dispose();
+            System.out.println("3");
             JFrame jFrame = new JFrame();
             jFrame.add(new DisplayGraphics());
             jFrame.setSize(1920,1080);
