@@ -8,6 +8,14 @@ public class DisplayGraphics extends JPanel implements MouseListener {
     private String number;
     private ArrayList<Coordinates> coordinates = new ArrayList<>();
     private int help=1;
+
+    public ArrayList<Coordinates> getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(ArrayList<Coordinates> coordinates) {
+        this.coordinates = coordinates;
+    }
     public DisplayGraphics(){
         setLayout(null);
         JButton button1 = new JButton("1");
@@ -67,6 +75,7 @@ public class DisplayGraphics extends JPanel implements MouseListener {
         add(button7);
         add(button8);
         add(button9);
+        System.out.println(coordinates);
     }
 
     @Override

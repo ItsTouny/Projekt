@@ -68,38 +68,26 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==buttonEasy) {
-            jFrame.dispose();
-            System.out.println("1");
-            JFrame jFrame = new JFrame();
-            jFrame.add(new DisplayGraphics());
-            jFrame.setSize(1920, 1080);
-            jFrame.setResizable(false);
-            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            jFrame.setLocationRelativeTo(null);
-            jFrame.setVisible(true);
+            Sudoku sudoku = new Sudoku(30);
+            sudoku.fillValues();
             removeMouseListener(this);
         }else if (e.getSource()==buttonMedium){
-            jFrame.dispose();
-            System.out.println("2");
-            JFrame jFrame = new JFrame();
-            jFrame.add(new DisplayGraphics());
-            jFrame.setSize(1920,1080);
-            jFrame.setResizable(false);
-            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            jFrame.setLocationRelativeTo(null);
-            jFrame.setVisible(true);
+            Sudoku sudoku = new Sudoku(40);
+            sudoku.fillValues();
             removeMouseListener(this);
         }else if (e.getSource()==buttonHard){
-            jFrame.dispose();
-            System.out.println("3");
-            JFrame jFrame = new JFrame();
-            jFrame.add(new DisplayGraphics());
-            jFrame.setSize(1920,1080);
-            jFrame.setResizable(false);
-            jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            jFrame.setLocationRelativeTo(null);
-            jFrame.setVisible(true);
+            Sudoku sudoku = new Sudoku(50);
+            sudoku.fillValues();
             removeMouseListener(this);
         }
+        jFrame.dispose();
+        JFrame jFrame = new JFrame();
+        jFrame.add(new DisplayGraphics());
+        jFrame.setSize(1920,1080);
+        jFrame.setResizable(false);
+        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame.setLocationRelativeTo(null);
+        jFrame.setVisible(true);
+        removeMouseListener(this);
     }
 }
