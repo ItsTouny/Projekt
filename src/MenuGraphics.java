@@ -11,6 +11,7 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
     JButton buttonEasy;
     JButton buttonMedium;
     JButton buttonHard;
+    DisplayGraphics displayGraphics = new DisplayGraphics();
 
     public MenuGraphics(){
         jFrame = new JFrame();
@@ -23,13 +24,13 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
         JLabel jLabel = new JLabel("SUDOKU");
         jLabel.setFont(new Font("font",Font.PLAIN,200));
         jLabel.setBounds(0,0,1000,1000);
-        jLabel.setLocation(500,-300);
+        jLabel.setLocation(550,-300);
         buttonEasy = new JButton("Easy");
         buttonMedium = new JButton("Medium");
         buttonHard = new JButton("Hard");
-        buttonEasy.setBounds(850,540,150,100);
-        buttonMedium.setBounds(850,650,150,100);
-        buttonHard.setBounds(850,760,150,100);
+        buttonEasy.setBounds(900,540,150,100);
+        buttonMedium.setBounds(900,650,150,100);
+        buttonHard.setBounds(900,760,150,100);
         jPanel.add(jLabel);
         jPanel.add(buttonEasy);
         jPanel.add(buttonMedium);
@@ -70,19 +71,26 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
         if (e.getSource()==buttonEasy) {
             Sudoku sudoku = new Sudoku(30);
             sudoku.fillValues();
+            displayGraphics.setCoordinates(sudoku.setCoordinates());
+            displayGraphics.setValues(sudoku.setValues());
             removeMouseListener(this);
         }else if (e.getSource()==buttonMedium){
             Sudoku sudoku = new Sudoku(40);
             sudoku.fillValues();
+            displayGraphics.setCoordinates(sudoku.setCoordinates());
+            displayGraphics.setValues(sudoku.setValues());
             removeMouseListener(this);
         }else if (e.getSource()==buttonHard){
             Sudoku sudoku = new Sudoku(50);
             sudoku.fillValues();
+            displayGraphics.setCoordinates(sudoku.setCoordinates());
+            displayGraphics.setValues(sudoku.setValues());
             removeMouseListener(this);
         }
+        displayGraphics.printValues();
         jFrame.dispose();
         JFrame jFrame = new JFrame();
-        jFrame.add(new DisplayGraphics());
+        jFrame.add(displayGraphics);
         jFrame.setSize(1920,1080);
         jFrame.setResizable(false);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

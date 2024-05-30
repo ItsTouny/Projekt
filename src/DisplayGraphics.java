@@ -7,7 +7,16 @@ import java.util.ArrayList;
 public class DisplayGraphics extends JPanel implements MouseListener {
     private String number;
     private ArrayList<Coordinates> coordinates = new ArrayList<>();
+    private ArrayList<Integer> values = new ArrayList<>();
     private int help=1;
+
+    public ArrayList<Integer> getValues() {
+        return values;
+    }
+
+    public void setValues(ArrayList<Integer> values) {
+        this.values = values;
+    }
 
     public ArrayList<Coordinates> getCoordinates() {
         return coordinates;
@@ -75,7 +84,8 @@ public class DisplayGraphics extends JPanel implements MouseListener {
         add(button7);
         add(button8);
         add(button9);
-        System.out.println(coordinates);
+
+
     }
 
     @Override
@@ -98,7 +108,7 @@ public class DisplayGraphics extends JPanel implements MouseListener {
             removeMouseListener(this);
             return;
         }else {
-            for (int i = 0; i < coordinates.size()+help;i++) {
+            for (int i = 0; i < coordinates.size();i++) {
                 if (((e.getX() / 100) * 100 + 35) == coordinates.get(i).getX() && ((400 - (e.getY() / 100) * 100)) * -1 == coordinates.get(i).getY()) {
                     return;
                 }
@@ -155,5 +165,16 @@ public class DisplayGraphics extends JPanel implements MouseListener {
         g.drawLine(100,700,1000,700);
         g.drawLine(400,100,400,1000);
         g.drawLine(700,100,700,1000);
+    }
+    public void printValues(){
+        for (int i = 0; i < values.size(); i++) {
+            JLabel jLabel1 = new JLabel();
+            jLabel1.setBounds(500, 50, 900, 900);
+            jLabel1.setLocation(new Point(coordinates.get(i).getX(),coordinates.get(i).getY()));
+            jLabel1.setFont(new Font("font", Font.PLAIN, 50));
+            jLabel1.setText(String.valueOf(values.get(i)));
+            add(jLabel1);
+            jLabel1.repaint();
+        }
     }
 }

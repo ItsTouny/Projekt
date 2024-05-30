@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Sudoku {
     int[][] mat;
     int N=9;
@@ -135,16 +137,31 @@ public class Sudoku {
             }
         }
     }
-    public void setCoordinates()
+    public ArrayList<Coordinates> setCoordinates()
     {
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
         for (int i = 0; i<N; i++)
         {
             for (int j = 0; j<N; j++) {
                 if (mat[i][j] != 0) {
-                    displayGraphics.getCoordinates().add(new Coordinates(i*100+35,(400-j*100)*-1));
+                    coordinates.add(new Coordinates((i+1)*100+35,(400-(j+1)*100)*-1));
                 }
             }
         }
+        return coordinates;
+    }
+    public ArrayList<Integer> setValues()
+    {
+        ArrayList<Integer> values = new ArrayList<>();
+        for (int i = 0; i<N; i++)
+        {
+            for (int j = 0; j<N; j++) {
+                if (mat[i][j] != 0) {
+                    values.add(mat[i][j]);
+                }
+            }
+        }
+        return values;
     }
 }
 
