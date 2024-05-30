@@ -5,14 +5,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class MenuGraphics extends JPanel implements MouseListener, ActionListener {
+public class MenuGraphics implements MouseListener, ActionListener {
     JFrame jFrame;
     JPanel jPanel;
     JButton buttonEasy;
     JButton buttonMedium;
     JButton buttonHard;
     DisplayGraphics displayGraphics = new DisplayGraphics();
-    Pen pen = new Pen();
+
 
     public MenuGraphics(){
         jFrame = new JFrame();
@@ -75,14 +75,14 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
             displayGraphics.setSolvedValues(sudoku.setSolvedValues());
-            removeMouseListener(this);
+            buttonEasy.removeMouseListener(this);
         }else if (e.getSource()==buttonMedium){
             Sudoku sudoku = new Sudoku(32);
             sudoku.fillValues();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
             displayGraphics.setSolvedValues(sudoku.setSolvedValues());
-            removeMouseListener(this);
+            buttonMedium.removeMouseListener(this);
         }else if (e.getSource()==buttonHard){
             Sudoku sudoku = new Sudoku(45);
             sudoku.fillValues();
@@ -90,21 +90,21 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
             displayGraphics.setSolvedValues(sudoku.setSolvedValues());
-            removeMouseListener(this);
+            buttonHard.removeMouseListener(this);
         }
         displayGraphics.printValues();
         jFrame.dispose();
         JFrame jFrame = new JFrame();
         jFrame.setLayout(null);
         displayGraphics.setBounds(0,0,1920,1080);
-        pen.setBounds(900,0,900,1080);
         jFrame.add(displayGraphics);
-        jFrame.add(pen);
+        jFrame.revalidate();
+        jFrame.repaint();
         jFrame.setSize(1920,1080);
         jFrame.setResizable(false);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.setLocationRelativeTo(null);
         jFrame.setVisible(true);
-        removeMouseListener(this);
+        jFrame.removeMouseListener(this);
     }
 }

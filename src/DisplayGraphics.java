@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class DisplayGraphics extends JPanel implements MouseListener {
+public class DisplayGraphics extends JPanel implements MouseListener ,ActionListener {
     private String number;
     private ArrayList<Coordinates> coordinates = new ArrayList<>();
     private ArrayList<Integer> values = new ArrayList<>();
@@ -12,6 +12,10 @@ public class DisplayGraphics extends JPanel implements MouseListener {
     private JLabel heart2;
     private JLabel heart3;
     private int life=3;
+    private boolean redRectangle=false;
+    private int redRectangleX;
+    private int redRectangleY;
+    private Timer timer;
 
 
     public ArrayList<Integer> getSolvedValues() {
@@ -39,6 +43,7 @@ public class DisplayGraphics extends JPanel implements MouseListener {
     }
     public DisplayGraphics(){
         setLayout(null);
+        timer = new Timer(1000,this);
         JButton button1 = new JButton("1");
         JButton button2 = new JButton("2");
         JButton button3 = new JButton("3");
@@ -137,6 +142,10 @@ public class DisplayGraphics extends JPanel implements MouseListener {
                 coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
                 checkWin();
             } else if (Integer.valueOf(number)!=solvedValues.get(e.getY()/100*9-(10-e.getX()/100))) {
+                redRectangle=true;
+                redRectangleX=(e.getX() / 100) * 100;
+                redRectangleY=(e.getY() / 100) * 100;
+                repaint();
                 switch (life){
                     case 1:
                         heart1.setVisible(false);
@@ -177,6 +186,13 @@ public class DisplayGraphics extends JPanel implements MouseListener {
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        if (redRectangle){
+            g.setColor(Color.red);
+            g.fillRect(redRectangleX,redRectangleY,100,100);
+            redRectangle=false;
+            scheduleAutoUndo();
+        }
+        g.setColor(Color.black);
         g.drawLine(100,200,1000,200);
         g.drawLine(100,300,1000,300);
         g.drawLine(100,500,1000,500);
@@ -225,5 +241,19 @@ public class DisplayGraphics extends JPanel implements MouseListener {
         jLabel.setBounds(0,0,1920,1000);
         jLabel.setLocation(500,100);
         add(jLabel);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource()==timer){
+            repaint();
+        }
+    }
+    private void scheduleAutoUndo() {
+        if (timer.isRunning()) {
+            timer.restart();
+        } else {
+            timer.start();
+        }
     }
 }
