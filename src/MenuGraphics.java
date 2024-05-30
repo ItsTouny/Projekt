@@ -12,6 +12,7 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
     JButton buttonMedium;
     JButton buttonHard;
     DisplayGraphics displayGraphics = new DisplayGraphics();
+    Pen pen = new Pen();
 
     public MenuGraphics(){
         jFrame = new JFrame();
@@ -69,21 +70,21 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==buttonEasy) {
-            Sudoku sudoku = new Sudoku(30);
+            Sudoku sudoku = new Sudoku(1);
             sudoku.fillValues();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
             displayGraphics.setSolvedValues(sudoku.setSolvedValues());
             removeMouseListener(this);
         }else if (e.getSource()==buttonMedium){
-            Sudoku sudoku = new Sudoku(45);
+            Sudoku sudoku = new Sudoku(32);
             sudoku.fillValues();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
             displayGraphics.setSolvedValues(sudoku.setSolvedValues());
             removeMouseListener(this);
         }else if (e.getSource()==buttonHard){
-            Sudoku sudoku = new Sudoku(60);
+            Sudoku sudoku = new Sudoku(45);
             sudoku.fillValues();
             sudoku.printSudoku();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
@@ -94,7 +95,11 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
         displayGraphics.printValues();
         jFrame.dispose();
         JFrame jFrame = new JFrame();
+        jFrame.setLayout(null);
+        displayGraphics.setBounds(0,0,1920,1080);
+        pen.setBounds(900,0,900,1080);
         jFrame.add(displayGraphics);
+        jFrame.add(pen);
         jFrame.setSize(1920,1080);
         jFrame.setResizable(false);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
