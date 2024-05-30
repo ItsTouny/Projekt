@@ -41,7 +41,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
     public void setCoordinates(ArrayList<Coordinates> coordinates) {
         this.coordinates = coordinates;
     }
-    public DisplayGraphics(){
+    public DisplayGraphics(JFrame frame){
         setLayout(null);
         timer = new Timer(1000,this);
         JButton button1 = new JButton("1");
@@ -53,6 +53,14 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
         JButton button7 = new JButton("7");
         JButton button8 = new JButton("8");
         JButton button9 = new JButton("9");
+        JButton buttonPen1 = new JButton("pen 1");
+        buttonPen1.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Pen.pen(frame);
+                revalidate();
+                repaint();
+            }
+        });
         heart1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("heart3.png");
         heart1.setIcon(icon1);
@@ -108,6 +116,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
         button7.setBounds(1380,100,50,50);
         button8.setBounds(1435,100,50,50);
         button9.setBounds(1490,100,50,50);
+        buttonPen1.setBounds(1050,200,50,50);
         add(button1);
         add(button2);
         add(button3);
@@ -117,6 +126,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
         add(button7);
         add(button8);
         add(button9);
+        add(buttonPen1);
     }
 
     @Override
@@ -256,4 +266,5 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
             timer.start();
         }
     }
+
 }

@@ -6,21 +6,21 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class MenuGraphics implements MouseListener, ActionListener {
-    JFrame jFrame;
+    JFrame jFrame1 = new JFrame();
+    JFrame jFrame2 = new JFrame();
     JPanel jPanel;
     JButton buttonEasy;
     JButton buttonMedium;
     JButton buttonHard;
-    DisplayGraphics displayGraphics = new DisplayGraphics();
+    DisplayGraphics displayGraphics = new DisplayGraphics(jFrame2);
 
 
     public MenuGraphics(){
-        jFrame = new JFrame();
         jPanel = new JPanel();
-        jFrame.setSize(1920,1080);
-        jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setLocationRelativeTo(null);
+        jFrame1.setSize(1920,1080);
+        jFrame1.setResizable(false);
+        jFrame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame1.setLocationRelativeTo(null);
         jPanel.setLayout(null);
         JLabel jLabel = new JLabel("SUDOKU");
         jLabel.setFont(new Font("font",Font.PLAIN,200));
@@ -39,8 +39,8 @@ public class MenuGraphics implements MouseListener, ActionListener {
         buttonEasy.addActionListener(this);
         buttonMedium.addActionListener(this);
         buttonHard.addActionListener(this);
-        jFrame.getContentPane().add(jPanel);
-        jFrame.setVisible(true);
+        jFrame1.getContentPane().add(jPanel);
+        jFrame1.setVisible(true);
     }
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -93,18 +93,17 @@ public class MenuGraphics implements MouseListener, ActionListener {
             buttonHard.removeMouseListener(this);
         }
         displayGraphics.printValues();
-        jFrame.dispose();
-        JFrame jFrame = new JFrame();
-        jFrame.setLayout(null);
+        jFrame1.dispose();
+        jFrame2.setLayout(null);
         displayGraphics.setBounds(0,0,1920,1080);
-        jFrame.add(displayGraphics);
-        jFrame.revalidate();
-        jFrame.repaint();
-        jFrame.setSize(1920,1080);
-        jFrame.setResizable(false);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setLocationRelativeTo(null);
-        jFrame.setVisible(true);
-        jFrame.removeMouseListener(this);
+        jFrame2.add(displayGraphics);
+        jFrame2.revalidate();
+        jFrame2.repaint();
+        jFrame2.setSize(1920,1080);
+        jFrame2.setResizable(false);
+        jFrame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jFrame2.setLocationRelativeTo(null);
+        jFrame2.setVisible(true);
+        jFrame2.removeMouseListener(this);
     }
 }
