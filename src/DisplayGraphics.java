@@ -1,5 +1,4 @@
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -8,7 +7,16 @@ public class DisplayGraphics extends JPanel implements MouseListener {
     private String number;
     private ArrayList<Coordinates> coordinates = new ArrayList<>();
     private ArrayList<Integer> values = new ArrayList<>();
-    private int help=1;
+    private ArrayList<Integer> solvedValues = new ArrayList<>();
+
+
+    public ArrayList<Integer> getSolvedValues() {
+        return solvedValues;
+    }
+
+    public void setSolvedValues(ArrayList<Integer> solvedValues) {
+        this.solvedValues = solvedValues;
+    }
 
     public ArrayList<Integer> getValues() {
         return values;
@@ -84,8 +92,6 @@ public class DisplayGraphics extends JPanel implements MouseListener {
         add(button7);
         add(button8);
         add(button9);
-
-
     }
 
     @Override
@@ -94,36 +100,22 @@ public class DisplayGraphics extends JPanel implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (coordinates.isEmpty()) {
-            JLabel jLabel1 = new JLabel();
-            jLabel1.setBounds(50, 50, 900, 900);
-            jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
-            jLabel1.setFont(new Font("font", Font.PLAIN, 50));
-            jLabel1.setText(number);
-            add(jLabel1);
-            jLabel1.repaint();
-            System.out.println(e.getX() + " " + e.getY());
-            coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
-            help=0;
-            removeMouseListener(this);
-            return;
-        }else {
-            for (int i = 0; i < coordinates.size();i++) {
+        for (int i = 0; i < coordinates.size();i++) {
                 if (((e.getX() / 100) * 100 + 35) == coordinates.get(i).getX() && ((400 - (e.getY() / 100) * 100)) * -1 == coordinates.get(i).getY()) {
                     return;
                 }
-            }
         }
         if ((e.getX()<1000&&e.getX()>100)&&(e.getY()<1000&&e.getY()>100)){
-            JLabel jLabel1 = new JLabel();
-            jLabel1.setBounds(50, 50, 900, 900);
-            jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
-            jLabel1.setFont(new Font("font", Font.PLAIN, 50));
-            jLabel1.setText(number);
-            add(jLabel1);
-            jLabel1.repaint();
-            System.out.println(e.getX() + " " + e.getY());
-            coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
+            if (Integer.valueOf(number)==solvedValues.get(e.getY()/100*9-(10-e.getX()/100))){
+                JLabel jLabel1 = new JLabel();
+                jLabel1.setBounds(50, 50, 900, 900);
+                jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
+                jLabel1.setFont(new Font("font", Font.PLAIN, 50));
+                jLabel1.setText(number);
+                add(jLabel1);
+                jLabel1.repaint();
+                coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
+            }
         }
         removeMouseListener(this);
     }

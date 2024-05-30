@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Sudoku {
     int[][] mat;
+    int[][] filledMat = new int[9][9];
     int N=9;
     int SRN;
     int K;
@@ -21,7 +22,9 @@ public class Sudoku {
     {
         fillDiagonal();
         fillRemaining(0, SRN);
+        setfilledMat();
         removeKDigits();
+
     }
     void fillDiagonal()
     {
@@ -137,6 +140,16 @@ public class Sudoku {
             }
         }
     }
+    public void setfilledMat()
+    {
+        for (int i = 0; i<N; i++) {
+            for (int j = 0; j<N; j++) {
+                if (mat[i][j] != 0) {
+                    filledMat[i][j] = mat[i][j];
+                }
+            }
+        }
+    }
     public ArrayList<Coordinates> setCoordinates()
     {
         ArrayList<Coordinates> coordinates = new ArrayList<>();
@@ -144,7 +157,7 @@ public class Sudoku {
         {
             for (int j = 0; j<N; j++) {
                 if (mat[i][j] != 0) {
-                    coordinates.add(new Coordinates((i+1)*100+35,(400-(j+1)*100)*-1));
+                    coordinates.add(new Coordinates((j+1)*100+35,(400-(i+1)*100)*-1));
                 }
             }
         }
@@ -153,8 +166,7 @@ public class Sudoku {
     public ArrayList<Integer> setValues()
     {
         ArrayList<Integer> values = new ArrayList<>();
-        for (int i = 0; i<N; i++)
-        {
+        for (int i = 0; i<N; i++) {
             for (int j = 0; j<N; j++) {
                 if (mat[i][j] != 0) {
                     values.add(mat[i][j]);
@@ -162,6 +174,34 @@ public class Sudoku {
             }
         }
         return values;
+    }
+    public ArrayList<Integer> setSolvedValues()
+    {
+        ArrayList<Integer> solvedValues = new ArrayList<>();
+        for (int i = 0; i<9; i++)
+        {
+            for (int j = 0; j<9; j++) {
+                    solvedValues.add(filledMat[i][j]);
+            }
+        }
+        return solvedValues;
+    }
+    public void printSudoku()
+    {
+        for (int i = 0; i<N; i++)
+        {
+            for (int j = 0; j<N; j++)
+                System.out.print(filledMat[i][j] + " ");
+            System.out.println();
+        }
+        System.out.println();
+        for (int i = 0; i<N; i++)
+        {
+            for (int j = 0; j<N; j++)
+                System.out.print(mat[i][j] + " ");
+            System.out.println();
+        }
+        System.out.println();
     }
 }
 

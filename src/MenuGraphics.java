@@ -73,18 +73,22 @@ public class MenuGraphics extends JPanel implements MouseListener, ActionListene
             sudoku.fillValues();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
+            displayGraphics.setSolvedValues(sudoku.setSolvedValues());
             removeMouseListener(this);
         }else if (e.getSource()==buttonMedium){
-            Sudoku sudoku = new Sudoku(40);
+            Sudoku sudoku = new Sudoku(45);
             sudoku.fillValues();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
+            displayGraphics.setSolvedValues(sudoku.setSolvedValues());
             removeMouseListener(this);
         }else if (e.getSource()==buttonHard){
-            Sudoku sudoku = new Sudoku(50);
+            Sudoku sudoku = new Sudoku(60);
             sudoku.fillValues();
+            sudoku.printSudoku();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
+            displayGraphics.setSolvedValues(sudoku.setSolvedValues());
             removeMouseListener(this);
         }
         displayGraphics.printValues();
