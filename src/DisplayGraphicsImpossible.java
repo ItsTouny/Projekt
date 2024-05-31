@@ -1,9 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class DisplayGraphics extends JPanel implements MouseListener ,ActionListener {
+public class DisplayGraphicsImpossible extends JPanel implements MouseListener, ActionListener {
     private String number;
     private ArrayList<Coordinates> coordinates = new ArrayList<>();
     private ArrayList<Integer> values = new ArrayList<>();
@@ -16,6 +20,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
     private int redRectangleX;
     private int redRectangleY;
     private Timer timer;
+    private JButton solve;
 
 
     public ArrayList<Integer> getSolvedValues() {
@@ -42,7 +47,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
         this.coordinates = coordinates;
     }
 
-    public DisplayGraphics(JFrame frame){
+    public DisplayGraphicsImpossible(JFrame frame){
         setLayout(null);
         timer = new Timer(1000,this);
         JButton button1 = new JButton("1");
@@ -54,6 +59,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
         JButton button7 = new JButton("7");
         JButton button8 = new JButton("8");
         JButton button9 = new JButton("9");
+        solve = new JButton("How to solve");
         heart1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("heart3.png");
         heart1.setIcon(icon1);
@@ -109,6 +115,8 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
         button7.setBounds(1380,100,50,50);
         button8.setBounds(1435,100,50,50);
         button9.setBounds(1490,100,50,50);
+        solve.setBounds(1050,175,490,50);
+        solve.addActionListener(this);
         add(button1);
         add(button2);
         add(button3);
@@ -118,6 +126,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
         add(button7);
         add(button8);
         add(button9);
+        add(solve);
     }
 
     @Override
@@ -127,9 +136,9 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
     @Override
     public void mousePressed(MouseEvent e) {
         for (int i = 0; i < coordinates.size();i++) {
-                if (((e.getX() / 100) * 100 + 35) == coordinates.get(i).getX() && ((400 - (e.getY() / 100) * 100)) * -1 == coordinates.get(i).getY()) {
-                    return;
-                }
+            if (((e.getX() / 100) * 100 + 35) == coordinates.get(i).getX() && ((400 - (e.getY() / 100) * 100)) * -1 == coordinates.get(i).getY()) {
+                return;
+            }
         }
         if ((e.getX()<1000&&e.getX()>100)&&(e.getY()<1000&&e.getY()>100)){
             if (Integer.valueOf(number)==solvedValues.get(e.getY()/100*9-(10-e.getX()/100))){
@@ -248,6 +257,14 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==timer){
             repaint();
+        } else if (e.getSource()==solve) {
+            Runtime rt = Runtime.getRuntime();
+            String url = "https://youtu.be/yKf9aUIxdb4?si=nkFf3ugkP4_4rKH-&t=237";
+            try {
+                rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
     private void scheduleAutoUndo() {
@@ -257,5 +274,4 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
             timer.start();
         }
     }
-
 }
