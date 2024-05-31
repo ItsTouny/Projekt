@@ -21,6 +21,8 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
     private int redRectangleY;
     private Timer timer;
     private JButton solve;
+    private JButton rules;
+    private boolean win=false;
 
 
     public ArrayList<Integer> getSolvedValues() {
@@ -60,6 +62,7 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
         JButton button8 = new JButton("8");
         JButton button9 = new JButton("9");
         solve = new JButton("How to solve");
+        rules = new JButton("Rules and theorems");
         heart1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("heart3.png");
         heart1.setIcon(icon1);
@@ -116,7 +119,9 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
         button8.setBounds(1435,100,50,50);
         button9.setBounds(1490,100,50,50);
         solve.setBounds(1050,175,490,50);
+        rules.setBounds(1050,250,490,50);
         solve.addActionListener(this);
+        rules.addActionListener(this);
         add(button1);
         add(button2);
         add(button3);
@@ -127,6 +132,7 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
         add(button8);
         add(button9);
         add(solve);
+        add(rules);
     }
 
     @Override
@@ -135,6 +141,10 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if (win||life==0) {
+            return;
+        }
+
         for (int i = 0; i < coordinates.size();i++) {
             if (((e.getX() / 100) * 100 + 35) == coordinates.get(i).getX() && ((400 - (e.getY() / 100) * 100)) * -1 == coordinates.get(i).getY()) {
                 return;
@@ -161,6 +171,7 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
                         heart1.setVisible(false);
                         removeMouseListener(this);
                         checkLose();
+                        life--;
                         break;
                     case 2:
                         heart2.setVisible(false);
@@ -242,6 +253,7 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
             jLabel.setBounds(0,0,1920,1000);
             jLabel.setLocation(500,100);
             add(jLabel);
+            win=true;
         }
     }
     public void checkLose(){
@@ -260,6 +272,14 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
         } else if (e.getSource()==solve) {
             Runtime rt = Runtime.getRuntime();
             String url = "https://youtu.be/yKf9aUIxdb4?si=nkFf3ugkP4_4rKH-&t=237";
+            try {
+                rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        } else if (e.getSource()==rules) {
+            Runtime rt = Runtime.getRuntime();
+            String url = "https://ethmcc.github.io/miracle-sudoku/";
             try {
                 rt.exec("rundll32 url.dll,FileProtocolHandler " + url);
             } catch (IOException ex) {

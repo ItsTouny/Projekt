@@ -16,6 +16,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
     private int redRectangleX;
     private int redRectangleY;
     private Timer timer;
+    private boolean win= false;
 
 
     public ArrayList<Integer> getSolvedValues() {
@@ -126,46 +127,51 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
 
     @Override
     public void mousePressed(MouseEvent e) {
-        for (int i = 0; i < coordinates.size();i++) {
+        if (win==true||life==0) {
+            return;
+        }
+            for (int i = 0; i < coordinates.size(); i++) {
                 if (((e.getX() / 100) * 100 + 35) == coordinates.get(i).getX() && ((400 - (e.getY() / 100) * 100)) * -1 == coordinates.get(i).getY()) {
                     return;
                 }
-        }
-        if ((e.getX()<1000&&e.getX()>100)&&(e.getY()<1000&&e.getY()>100)){
-            if (Integer.valueOf(number)==solvedValues.get(e.getY()/100*9-(10-e.getX()/100))){
-                JLabel jLabel1 = new JLabel();
-                jLabel1.setBounds(50, 50, 900, 900);
-                jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
-                jLabel1.setFont(new Font("font", Font.PLAIN, 50));
-                jLabel1.setText(number);
-                add(jLabel1);
-                jLabel1.repaint();
-                coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
-                checkWin();
-            } else if (Integer.valueOf(number)!=solvedValues.get(e.getY()/100*9-(10-e.getX()/100))) {
-                redRectangle=true;
-                redRectangleX=(e.getX() / 100) * 100;
-                redRectangleY=(e.getY() / 100) * 100;
-                repaint();
-                switch (life){
-                    case 1:
-                        heart1.setVisible(false);
-                        removeMouseListener(this);
-                        checkLose();
-                        break;
-                    case 2:
-                        heart2.setVisible(false);
-                        life--;
-                        removeMouseListener(this);
-                        break;
-                    case 3:
-                        heart3.setVisible(false);
-                        life--;
-                        removeMouseListener(this);
-                        break;
+            }
+            if ((e.getX() < 1000 && e.getX() > 100) && (e.getY() < 1000 && e.getY() > 100)) {
+                if (Integer.valueOf(number) == solvedValues.get(e.getY() / 100 * 9 - (10 - e.getX() / 100))) {
+                    JLabel jLabel1 = new JLabel();
+                    jLabel1.setBounds(50, 50, 900, 900);
+                    jLabel1.setLocation((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1);
+                    jLabel1.setFont(new Font("font", Font.PLAIN, 50));
+                    jLabel1.setText(number);
+                    add(jLabel1);
+                    jLabel1.repaint();
+                    coordinates.add(new Coordinates((e.getX() / 100) * 100 + 35, ((400 - (e.getY() / 100) * 100)) * -1));
+                    checkWin();
+                } else if (Integer.valueOf(number) != solvedValues.get(e.getY() / 100 * 9 - (10 - e.getX() / 100))) {
+                    redRectangle = true;
+                    redRectangleX = (e.getX() / 100) * 100;
+                    redRectangleY = (e.getY() / 100) * 100;
+                    repaint();
+                    switch (life) {
+                        case 1:
+                            heart1.setVisible(false);
+                            removeMouseListener(this);
+                            checkLose();
+                            life--;
+                            break;
+                        case 2:
+                            heart2.setVisible(false);
+                            life--;
+                            removeMouseListener(this);
+                            break;
+                        case 3:
+                            heart3.setVisible(false);
+                            life--;
+                            removeMouseListener(this);
+                            break;
+                    }
                 }
             }
-        }
+
         removeMouseListener(this);
     }
 
@@ -233,6 +239,7 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
             jLabel.setBounds(0,0,1920,1000);
             jLabel.setLocation(500,100);
             add(jLabel);
+            win=true;
         }
     }
     public void checkLose(){
