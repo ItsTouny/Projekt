@@ -1,16 +1,22 @@
 import java.util.ArrayList;
-
+/**
+ * The Sudoku class represents a Sudoku puzzle and provides methods to generate, solve, and manipulate the puzzle.
+ */
 public class Sudoku {
-    int[][] mat;
-    int[][] filledMat = new int[9][9];
-    int N=9;
-    int SRN;
-    int K;
+    private int[][] mat;
+    private int[][] filledMat = new int[9][9];
+    private int N=9;
+    private int SRN;
+    private int K;
 
     public Sudoku() {
     }
-
-    Sudoku(int K)
+    /**
+     * Constructs a Sudoku object with the specified grid size and number of empty cells.
+     *
+     * @param K the number of empty cells to be generated
+     */
+     Sudoku(int K)
     {
         this.K = K;
         Double SRNd = Math.sqrt(N);
@@ -18,6 +24,9 @@ public class Sudoku {
 
         mat = new int[N][N];
     }
+    /**
+     * Generates a Sudoku puzzle by filling the grid with valid values.
+     */
     public void fillValues()
     {
         fillDiagonal();
@@ -26,12 +35,23 @@ public class Sudoku {
         removeKDigits();
 
     }
+    /**
+     * Fills the diagonal sub-grids of the puzzle.
+     */
     void fillDiagonal()
     {
 
         for (int i = 0; i<N; i=i+SRN)
             fillBox(i, i);
     }
+    /**
+     * Checks if a number is unused in a sub-grid.
+     *
+     * @param rowStart the starting row of the sub-grid
+     * @param colStart the starting column of the sub-grid
+     * @param num the number to check
+     * @return true if the number is unused, false otherwise
+     */
     boolean unUsedInBox(int rowStart, int colStart, int num)
     {
         for (int i = 0; i<SRN; i++)
@@ -41,6 +61,12 @@ public class Sudoku {
 
         return true;
     }
+    /**
+     * Fills a sub-grid with valid values.
+     *
+     * @param row the starting row of the sub-grid
+     * @param col the starting column of the sub-grid
+     */
     void fillBox(int row,int col)
     {
         int num;
@@ -58,16 +84,37 @@ public class Sudoku {
             }
         }
     }
+    /**
+     * Generates a random number between 1 and N.
+     *
+     * @param num the upper bound of the random number
+     * @return a random number between 1 and num
+     */
     int randomGenerator(int num)
     {
         return (int) Math.floor((Math.random()*num+1));
     }
+    /**
+     * Checks if a number is safe to place at a given position in the puzzle.
+     *
+     * @param i the row of the position
+     * @param j the column of the position
+     * @param num the number to check
+     * @return true if the number is safe, false otherwise
+     */
     boolean CheckIfSafe(int i,int j,int num)
     {
         return (unUsedInRow(i, num) &&
                 unUsedInCol(j, num) &&
                 unUsedInBox(i-i%SRN, j-j%SRN, num));
     }
+    /**
+     * Checks if a number is unused in a row.
+     *
+     * @param i the row to check
+     * @param num the number to check
+     * @return true if the number is unused, false otherwise
+     */
     boolean unUsedInRow(int i,int num)
     {
         for (int j = 0; j<N; j++)
@@ -75,6 +122,13 @@ public class Sudoku {
                 return false;
         return true;
     }
+    /**
+     * Checks if a number is unused in a column.
+     *
+     * @param j the column to check
+     * @param num the number to check
+     * @return true if the number is unused, false otherwise
+     */
     boolean unUsedInCol(int j,int num)
     {
         for (int i = 0; i<N; i++)
@@ -82,6 +136,13 @@ public class Sudoku {
                 return false;
         return true;
     }
+    /**
+     * Fills the remaining empty cells in the puzzle with valid values.
+     *
+     * @param i the current row
+     * @param j the current column
+     * @return true if the puzzle is solved, false otherwise
+     */
     boolean fillRemaining(int i, int j)
     {
         if (j>=N && i<N-1)
@@ -124,6 +185,9 @@ public class Sudoku {
         }
         return false;
     }
+    /**
+     * Removes K digits from the puzzle to create empty cells.
+     */
     public void removeKDigits()
     {
         int count = K;
@@ -140,6 +204,9 @@ public class Sudoku {
             }
         }
     }
+    /**
+     * Sets the filled puzzle matrix.
+     */
     public void setfilledMat()
     {
         for (int i = 0; i<N; i++) {
@@ -150,6 +217,11 @@ public class Sudoku {
             }
         }
     }
+    /**
+     * Sets the coordinates of the numbers.
+     *
+     * @return a list of coordinates
+     */
     public ArrayList<Coordinates> setCoordinates()
     {
         ArrayList<Coordinates> coordinates = new ArrayList<>();
@@ -163,6 +235,11 @@ public class Sudoku {
         }
         return coordinates;
     }
+    /**
+     * Sets the values of the puzzle cells.
+     *
+     * @return a list of values
+     */
     public ArrayList<Integer> setValues()
     {
         ArrayList<Integer> values = new ArrayList<>();
@@ -175,6 +252,11 @@ public class Sudoku {
         }
         return values;
     }
+    /**
+     * Sets the solved values of the puzzle cells.
+     *
+     * @return a list of solved values
+     */
     public ArrayList<Integer> setSolvedValues()
     {
         ArrayList<Integer> solvedValues = new ArrayList<>();
@@ -186,6 +268,9 @@ public class Sudoku {
         }
         return solvedValues;
     }
+    /**
+     * Prints the Sudoku puzzle.
+     */
     public void printSudoku()
     {
         for (int i = 0; i<N; i++)

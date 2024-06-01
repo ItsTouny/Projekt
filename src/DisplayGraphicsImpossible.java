@@ -6,7 +6,9 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 import java.util.ArrayList;
-
+/**
+ * A class that displays a Sudoku board and handles user input.
+ */
 public class DisplayGraphicsImpossible extends JPanel implements MouseListener, ActionListener {
     private String number;
     private ArrayList<Coordinates> coordinates = new ArrayList<>();
@@ -48,7 +50,11 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
     public void setCoordinates(ArrayList<Coordinates> coordinates) {
         this.coordinates = coordinates;
     }
-
+    /**
+     * Constructs a new DisplayGraphics object with the given frame.
+     *
+     * @param frame the JFrame to add this JPanel to
+     */
     public DisplayGraphicsImpossible(JFrame frame){
         setLayout(null);
         timer = new Timer(1000,this);
@@ -138,7 +144,11 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
     @Override
     public void mouseClicked(MouseEvent e) {
     }
-
+    /**
+     * Handles mouse presses on the Sudoku board.
+     *
+     * @param e the MouseEvent that triggered this method
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         if (win||life==0) {
@@ -204,7 +214,11 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
     public void mouseExited(MouseEvent e) {
 
     }
-
+    /**
+     * Paints the Sudoku board and any additional graphics.
+     *
+     * @param g the Graphics object to paint with
+     */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         if (redRectangle){
@@ -234,6 +248,9 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
         g.drawLine(400,100,400,1000);
         g.drawLine(700,100,700,1000);
     }
+    /**
+     * Prints the values on the Sudoku board.
+     */
     public void printValues(){
         for (int i = 0; i < values.size(); i++) {
             JLabel jLabel1 = new JLabel();
@@ -245,6 +262,9 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
             jLabel1.repaint();
         }
     }
+    /**
+     * Checks if the user has won the game.
+     */
     public void checkWin() {
         if (coordinates.size()==81){
             repaint();
@@ -256,6 +276,9 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
             win=true;
         }
     }
+    /**
+     * Checks if the user has lost the game.
+     */
     public void checkLose(){
         repaint();
         JLabel jLabel = new JLabel("<html>You failed<br/> this sudoku</html>",SwingConstants.CENTER);
@@ -264,7 +287,11 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
         jLabel.setLocation(500,100);
         add(jLabel);
     }
-
+    /**
+     * Handles action events, such as timer events.
+     *
+     * @param e the ActionEvent that triggered this method
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==timer){
@@ -287,6 +314,9 @@ public class DisplayGraphicsImpossible extends JPanel implements MouseListener, 
             }
         }
     }
+    /**
+     * Schedules an auto-undo action.
+     */
     private void scheduleAutoUndo() {
         if (timer.isRunning()) {
             timer.restart();

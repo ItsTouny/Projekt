@@ -10,7 +10,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ * The MenuGraphics class represents the graphical user interface for the Sudoku game menu.
+ */
 public class MenuGraphics implements MouseListener, ActionListener {
     JFrame jFrame1 = new JFrame();
     JFrame jFrame2 = new JFrame();
@@ -23,7 +25,9 @@ public class MenuGraphics implements MouseListener, ActionListener {
     DisplayGraphics displayGraphics = new DisplayGraphics(jFrame2);
     DisplayGraphicsImpossible displayGraphicsImpossible = new DisplayGraphicsImpossible(jFrame3);
 
-
+    /**
+     * Constructs a MenuGraphics object and initializes the GUI components.
+     */
     public MenuGraphics(){
         jPanel = new JPanel();
         jFrame1.setSize(1920,1080);
@@ -79,11 +83,15 @@ public class MenuGraphics implements MouseListener, ActionListener {
     public void mouseExited(MouseEvent e) {
 
     }
-
+    /**
+     * Handles action events triggered by the play button.
+     *
+     * @param e the ActionEvent object containing details about the event
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource()==buttonEasy) {
-            Sudoku sudoku = new Sudoku(1);
+            Sudoku sudoku = new Sudoku(20);
             sudoku.fillValues();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
@@ -125,7 +133,6 @@ public class MenuGraphics implements MouseListener, ActionListener {
         }else if (e.getSource()==buttonHard){
             Sudoku sudoku = new Sudoku(45);
             sudoku.fillValues();
-            sudoku.printSudoku();
             displayGraphics.setCoordinates(sudoku.setCoordinates());
             displayGraphics.setValues(sudoku.setValues());
             displayGraphics.setSolvedValues(sudoku.setSolvedValues());
@@ -162,6 +169,9 @@ public class MenuGraphics implements MouseListener, ActionListener {
         }
 
     }
+    /**
+     * Setup for impossible difficulty
+     */
     public void setImpossible(){
         try {
             BufferedReader bf = new BufferedReader(new FileReader("ImpossibleSudoku"));
@@ -171,11 +181,6 @@ public class MenuGraphics implements MouseListener, ActionListener {
             ArrayList<Integer> values = new ArrayList<>();
             for (int i = 0; i < s.length; i++) {
                 solvedValues.add(Integer.valueOf(s[i]-'0'));
-                System.out.print(solvedValues);
-            }
-            System.out.println();
-            for (int i = 0; i < solvedValues.size(); i++) {
-                System.out.print(solvedValues.get(i));
             }
             coordinates2.add(new Coordinates(300+35,(400-500)*-1));
             coordinates2.add(new Coordinates(700+35,(400-600)*-1));
