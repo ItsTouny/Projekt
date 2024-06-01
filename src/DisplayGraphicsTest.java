@@ -58,7 +58,6 @@ public class DisplayGraphicsTest {
     @Test
     public void testCheckLose() {
         displayGraphics.checkLose();
-        // Check the label text and location to ensure the lose message is displayed
         JLabel loseLabel = displayGraphics.getLoseLabel();
         assertEquals("<html>You failed<br/> this sudoku</html>", loseLabel.getText());
     }
