@@ -17,7 +17,18 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
     private int redRectangleY;
     private Timer timer;
     private boolean win= false;
+    private JLabel loseLabel;
+    public boolean isWin() {
+        return win;
+    }
 
+    public JLabel getLoseLabel() {
+        return loseLabel;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
+    }
 
     public ArrayList<Integer> getSolvedValues() {
         return solvedValues;
@@ -244,11 +255,11 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
     }
     public void checkLose(){
         repaint();
-        JLabel jLabel = new JLabel("<html>You failed<br/> this sudoku</html>",SwingConstants.CENTER);
-        jLabel.setFont(new Font("font",Font.PLAIN,150));
-        jLabel.setBounds(0,0,1920,1000);
-        jLabel.setLocation(500,100);
-        add(jLabel);
+        loseLabel = new JLabel("<html>You failed<br/> this sudoku</html>",SwingConstants.CENTER);
+        loseLabel.setFont(new Font("font",Font.PLAIN,150));
+        loseLabel.setBounds(0,0,1920,1000);
+        loseLabel.setLocation(500,100);
+        add(loseLabel);
     }
 
     @Override
@@ -264,5 +275,4 @@ public class DisplayGraphics extends JPanel implements MouseListener ,ActionList
             timer.start();
         }
     }
-
 }
